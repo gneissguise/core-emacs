@@ -1,0 +1,109 @@
+# Emacs configuration .gitignore
+# Place this file in the root of your Emacs configuration repository (e.g. ~/.config/emacs)
+
+# --------- Emacs generated files/folders ---------
+# auto-save files
+*~
+# Emacs backup files
+**/backups/
+**/.#*
+# auto-save-list (per-user autosave lists)
+auto-save-list/
+
+# persistent state
+custom.el
+projects
+recentf
+
+# elpa package directory (package manager)
+elpa/
+
+# native-compiled cache (.eln files) and cache dirs
+eln-cache/
+*.eln
+
+# Emacs Lisp byte-compiled files
+*.elc
+
+# tramp temp files
+*~#
+
+# Desktop/session and lock files
+.desktop
+.desktop.lock
+
+# Cache and var dirs used by some distributions
+var/
+
+# etc dir used by some setups
+etc/
+
+# cache and temp directories
+.cache/
+.cache-emacs/
+.cache-etc/
+
+# .local, state and other XDG dirs that should not be checked in
+local/
+.local/
+.state/
+
+# local packages or builds
+build/
+node_modules/
+
+# Org mode and export artifacts
+*.org~
+*.org.*
+*.pdf
+*.html
+*.docx
+*.pptx
+
+# Undo-tree history
+*undo-tree*
+
+# Flycheck, flymake, and other tool cache files
+.flycheck_cache/
+
+# Projectile caches
+.projectile
+
+# Emacs server files
+.server
+
+# ERT test output
+ert-runner-output*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor swap/lock files
+.*.swp
+.*.swo
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment files (may contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Binary files
+*.so
+*.dll
+*.exe
+
+# Ignore Emacs local/combobulate build outputs (if any)
+local/combobulate/build/
+
+# Ignore generated documentation or test output directories
+docs/_build/
+
+# Keep this repository clean: allow tracked config files only
+# If you want to track any of the above, add a negative pattern (e.g. `!local/`)

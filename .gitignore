@@ -107,3 +107,4 @@ docs/_build/
 
 # Keep this repository clean: allow tracked config files only
 # If you want to track any of the above, add a negative pattern (e.g. `!local/`)
+transient/

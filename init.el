@@ -24,7 +24,8 @@
       inhibit-startup-message t
       bidi-display-reordering nil)
 (recentf-mode 1)
-;;(require 'compilation)
+
+(require 'compile)
 
 
 ;; --- Customization File ---

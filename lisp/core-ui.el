@@ -9,11 +9,11 @@
 ;; --- Font Configuration ---
 (set-face-attribute 'default nil
                     :family "Hack"
-                    :height 115)
+                    :height 150)
 
 (set-face-attribute 'variable-pitch nil
                     :family "Noto Sans"
-                    :height 1.025)
+                    :height 0.85)
 
 
 ;; --- Modus Themes Customizations ---

@@ -32,7 +32,7 @@
 ;; --- Improved Compile Command ---
 ;; Make the compilation buffer quieter and add syntax highlighting.
 (setq compilation-scroll-output t)
-(add-hook 'compilation-mode-hook #'compilation-hl-mode)
+;;(add-hook 'compilation-mode-hook #'compilation-hl-mode)
 
 ;; --- Magit Configuration ---
 (with-eval-after-load 'magit

@@ -10,12 +10,9 @@
 (require 'window)
 
 ;; --- Smarter Window Management ---
-(setq display-buffer-alist
-      '(;; Match buffers that are not visible in any window.
-        ("^\\*.*\\*$"
-         (display-buffer-popup-window)
-         (reusable-frames . visible)
-         (window-height . 0.25))))
+;; We are removing the (setq display-buffer-alist ...) configuration
+;; to avoid calling the missing 'display-buffer-other-window' function.
+;; Org-mode will now use its default behavior to show capture buffers.
 
 
 ;; --- Custom Project Commands ---

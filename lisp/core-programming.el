@@ -7,7 +7,6 @@
 
 ;; --- Tree-sitter Configuration ---
 ;; Tree-sitter provides faster and more accurate syntax highlighting.
-;; We enable the highlighting mode for all programming modes.
 (require 'treesit)
 
 ;; --- Tree-sitter Path Configuration ---
@@ -32,15 +31,13 @@
 ;; --- Improved Compile Command ---
 ;; Make the compilation buffer quieter and add syntax highlighting.
 (setq compilation-scroll-output t)
-;;(add-hook 'compilation-mode-hook #'compilation-hl-mode)
 
 ;; --- Magit Configuration ---
 (with-eval-after-load 'magit
-  (progn
-    ;; Automatically save file-visiting buffers before running magit commands.
-    (setq magit-save-repository-buffers 'dontask)
-    ;; Enable magit-todos-mode to show a list of TODOs in the status buffer.
-    (magit-todos-mode)))
+  ;; Automatically save file-visiting buffers before running magit commands.
+  (setq magit-save-repository-buffers 'dontask)
+  ;; Enable magit-todos-mode to show a list of TODOs in the status buffer.
+  (magit-todos-mode))
 
 (with-eval-after-load 'magit-delta
   ;; Enable delta for Magit diffs.

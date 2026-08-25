@@ -9,7 +9,6 @@
 ;; Initialize the package system. This must be done before using
 ;; any package commands.
 (require 'package)
-(require 'window)
 
 ;; Define the package archives. We include GNU ELPA (the default)
 ;; and MELPA, which has a much larger collection of packages.
@@ -56,7 +55,6 @@
     exec-path-from-shell
 
     ;; Modeline enhancements
-    diminish
     nerd-icons
     nerd-icons-dired
     nerd-icons-corfu

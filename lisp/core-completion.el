@@ -44,19 +44,18 @@
 ;; We defer the keybindings until after the 'consult' package is loaded.
 ;; This prevents errors on startup if the commands are not yet defined.
 (with-eval-after-load 'consult
-  (progn
-    ;; Bind powerful alternatives to their standard keys.
-    (global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
-    (global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'
-    (global-set-key (kbd "C-x C-f") #'consult-find)      ;; Replaces 'find-file'
-    (global-set-key (kbd "C-s") #'consult-line)         ;; Replaces 'isearch-forward'
+  ;; Bind powerful alternatives to their standard keys.
+  (global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
+  (global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'
+  (global-set-key (kbd "C-x C-f") #'consult-find)      ;; Replaces 'find-file'
+  (global-set-key (kbd "C-s") #'consult-line)         ;; Replaces 'isearch-forward'
 
-    ;; Add a dedicated command for switching projects with Consult.
-    (defun my/consult-project-switch ()
-      "Switch to another project using Consult."
-      (interactive)
-      (consult-project-root (project-known-project-roots)))
-    (global-set-key (kbd "C-x p s") #'my/consult-project-switch)))
+  ;; Add a dedicated command for switching projects with Consult.
+  (defun my/consult-project-switch ()
+    "Switch to another project using Consult."
+    (interactive)
+    (consult-project-buffer))
+  (global-set-key (kbd "C-x p s") #'my/consult-project-switch))
 
 ;; --- Cape and Tempel: Completion Sources and Snippets ---
 ;; Cape provides additional "completion at point" sources.

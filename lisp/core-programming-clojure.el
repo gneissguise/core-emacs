@@ -29,7 +29,7 @@
     (inf-clojure command)))
 
 (defun my-clojure-create-project (name template)
-  "Create a new Clojure project using the 'deps-new' tool."
+  "Create a new Clojure project using the `deps-new' tool."
   (interactive
    (list (read-string "Project name (e.g., my-group/my-project): ")
          (read-string "Template to use (e.g., app, lib): " nil nil "app")))
@@ -51,14 +51,14 @@
 (defun my-clojure-disconnect-repl ()
   "Disconnect from the REPL by killing its buffer and process."
   (interactive)
-  (when-let ((repl-buf (get-buffer "*inf-clojure*")))
+  (when-let* ((repl-buf (get-buffer "*inf-clojure*")))
     (kill-buffer repl-buf)
     (message "Disconnected from inf-clojure REPL.")))
 
 (defun my-clojure-clear-repl ()
   "Clear the contents of the REPL buffer."
   (interactive)
-  (when-let ((repl-win (get-buffer-window "*inf-clojure*")))
+  (when-let* ((repl-win (get-buffer-window "*inf-clojure*")))
     (with-current-buffer (window-buffer repl-win)
       (comint-clear-buffer)
       (message "inf-clojure REPL cleared."))))
@@ -127,7 +127,7 @@
   "Set up keybindings for `clojure-ts-mode`."
   (define-key clojure-ts-mode-map (kbd "C-c h") #'my-show-clojure-cheatsheet)
   (define-key clojure-ts-mode-map (kbd "M-.") #'xref-find-definitions)
-  (define-key clojure-ts-mode-map (kbd "M-,") #'xref-pop-marker-stack)
+  (define-key clojure-ts-mode-map (kbd "M-,") #'xref-go-back)
   (define-key clojure-ts-mode-map (kbd "C-c p n") #'my-clojure-create-project)
   (define-key clojure-ts-mode-map (kbd "C-c C-j") #'my-clojure-jack-in)
   (define-key clojure-ts-mode-map (kbd "C-c l") #'my-clojure-lint-with-eastwood)
@@ -156,8 +156,6 @@
   "Set up integrations that depend on Eglot being active."
   ;; Now that Eglot is running, we can safely add its eldoc function.
   (add-hook 'eldoc-documentation-functions #'eglot-eldoc-documentation-function nil 'local))
-
-;;(add-hook 'eglot-managed-mode-hook #'my-clojure-eglot-hook)
 
 (setq project-vc-extra-root-markers '(".gitignore" "deps.edn"))
 (setq eldoc-echo-area-use-multiline-p nil)

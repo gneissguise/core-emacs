@@ -27,8 +27,8 @@
 
 ;; Give our custom keywords some nice colors.
 (setq org-todo-keyword-faces
-      '(("NEXT" . (:foreground "sky blue" :weight 'bold))
-        ("WAITING" . (:foreground "orange" :weight 'bold))
+      '(("NEXT" . (:foreground "sky blue" :weight bold))
+        ("WAITING" . (:foreground "orange" :weight bold))
         ("DONE" . (:foreground "green"))
         ("CANCELLED" . (:foreground "red"))))
 
@@ -53,7 +53,6 @@
 (add-hook 'org-mode-hook #'org-modern-mode)
 ;; Enable structure-based indentation.
 (setq org-modern-indent t)
-(diminish 'org-modern-mode)
 
 
 ;; --- 4. General UI & Behavior ---

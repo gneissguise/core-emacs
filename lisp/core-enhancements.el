@@ -35,11 +35,7 @@
 
 
 ;; --- Which Key: Discover Keybindings ---
-;; Explicitly require the package to ensure its functions are available,
-;; then activate the mode globally.
-(require 'which-key)
 (which-key-mode)
-(diminish 'which-key-mode)
 
 ;; --- Rainbow Delimiters: Colorized Brackets ---
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)

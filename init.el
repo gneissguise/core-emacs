@@ -24,8 +24,11 @@
       inhibit-startup-message t
       bidi-display-reordering nil)
 (recentf-mode 1)
-
-(require 'compile)
+(save-place-mode 1)
+;; Emacs 31: these two must be set via `setopt', not `setq', and only exist
+;; once their libraries are loaded (hence after the mode calls above).
+(setopt recentf-autosave-interval 300
+        save-place-autosave-interval 300)
 
 
 ;; --- Customization File ---
@@ -34,8 +37,11 @@
 
 
 ;; --- Load Path Setup ---
+;; Third-party packages without an ELPA/MELPA release (e.g. combobulate) live
+;; in user-lisp/, which Emacs 31+ auto-discovers, byte-compiles, scrapes for
+;; autoloads, and adds to `load-path' on its own (see "(emacs) User Lisp
+;; Directory"). No manual `add-to-list' is needed for it.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "local/combobulate" user-emacs-directory))
 
 
 ;; --- Load ESSENTIAL Configurations ---
@@ -50,7 +56,6 @@
 ;; This is the definitive fix for all our load-order errors.
 (defun my-load-deferred-configurations ()
   "Load modular configuration files after startup."
-  (require 'core-performance)
   (require 'core-modeline)
   (require 'core-help)
   (require 'core-project)
@@ -71,6 +76,7 @@
 ;; This runs after everything is loaded.
 (add-hook 'emacs-startup-hook
           (lambda ()
+            (setq file-name-handler-alist my--file-name-handler-alist)
             (setq gc-cons-threshold (* 2 1024 1024))
             (run-with-idle-timer 5 t (lambda () (setq gc-cons-threshold (* 8 1024 1024))))))
 

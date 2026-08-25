@@ -1,6 +1,6 @@
 # core-emacs — Minimal, modular Emacs configuration
 
-A small, fast, and modular Emacs configuration focused on keeping Emacs "core-like" while providing sensible enhancements. Intended to be installed in your XDG config directory (e.g. `~/.config/emacs`) and used with Emacs 29 or newer.
+A small, fast, and modular Emacs configuration focused on keeping Emacs "core-like" while providing sensible enhancements. Intended to be installed in your XDG config directory (e.g. `~/.config/emacs`) and used with Emacs 31.1 or newer.
 
 This repository aims to be lean and easily auditable — it prefers tiny, well-documented modules under `lisp/` and keeps heavier or machine-specific artifacts out of version control.
 
@@ -11,13 +11,15 @@ This repository aims to be lean and easily auditable — it prefers tiny, well-d
 - Modular configuration split into small files under `lisp/` (UI, packages, editing, programming, org, etc.)
 - Fast startup optimizations placed in `early-init.el`
 - Minimal opinionated defaults (user info, editing prefs, recentf, backups)
-- Local vendor code support via `local/` (example: `combobulate`)
+- Emacs 31.1 native features: `vc-auto-revert-mode` for lightweight version control tracking, `mode-line-collapse-minor-modes` for cleaner mode-line display
+- User Lisp Directory (`user-lisp/`) for vendored third-party packages — no manual load-path manipulation needed
+- Deferred configuration loading via `emacs-startup-hook` for snappy startup
 
 ---
 
 ## Requirements
 
-- Emacs 29 or newer (configured and tested against Emacs 29+ features)
+- Emacs 31.1 or newer (configured and tested against Emacs 31.1+ features)
 - Git (for cloning the config)
 
 Optional (recommended):
@@ -41,7 +43,7 @@ git clone git@github.com:gneissguise/core-emacs.git ~/.emacs.d
 
 After cloning, start Emacs. The config uses `early-init.el` for early startup optimizations and `init.el` as the main entrypoint.
 
-Note: Package management and third-party packages are installed into `elpa/` by default (this directory is ignored by `.gitignore`). If you want to vendor packages, add them under `local/` and track them in Git.
+Note: Package management and third-party packages are installed into `elpa/` by default (this directory is ignored by `.gitignore`). If you want to vendor packages, add them under `user-lisp/` — Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads. No manual configuration needed.
 
 ---
 
@@ -53,7 +55,7 @@ Top-level files you care about:
 - `init.el` — Main entrypoint, loads essential modules and defers the rest
 - `custom.el` — (ignored) Emacs' customization file; excluded from VCS
 - `lisp/` — Modular configuration files (core-*.el)
-- `local/` — Local vendor or third-party packages (e.g. `combobulate`)
+- `user-lisp/` — Vendored third-party packages (Emacs 31+ User Lisp Directory)
 
 The `lisp/` directory contains small, focused modules such as:
 
@@ -67,7 +69,7 @@ The `lisp/` directory contains small, focused modules such as:
 ## Customization
 
 - Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored — use it or create `custom.local.el` and add it to your `~/.config/emacs/custom.el` if you want local-only overrides.
-- To add personal snippets or local packages, place them under `local/` and track them if you want them versioned.
+- To add personal snippets or local packages, place them under `user-lisp/`. Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads — no manual configuration needed.
 - To change user metadata, edit `user-full-name` and `user-mail-address` in `init.el` or set them in your `custom.el`.
 
 ---
@@ -78,7 +80,9 @@ This config uses the bundled package manager (ELPA/MELPA) and installs packages 
 
 - Recording pinned package versions in a small bootstrap file
 - Using `straight.el` or `package-jnk` vendoring for deterministic installs
-- Vendoring packages into `local/` and tracking them in Git
+- Vendoring packages into `user-lisp/` and tracking them in Git (Emacs 31+ auto-discovers this directory)
+
+Note: Several packages that were previously installed via ELPA are now built-in to Emacs 31, including `modus-themes`. These built-in packages are managed by Emacs' built-in package system and do not appear in the `elpa/` directory.
 
 ---
 

@@ -22,6 +22,14 @@
 ;; ensures that even the startup process itself is faster.
 (setq read-process-output-max (* 1024 1024))
 
+;; Temporarily disable the file-name-handler-alist during startup to speed
+;; up file operations (this is what actually matters for startup time,
+;; since it runs before any file is loaded). It is restored once startup
+;; completes in init.el; leaving it disabled permanently breaks TRAMP,
+;; encrypted (.gpg) files, and compressed-file auto-decompression.
+(defvar my--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
 ;; Inhibit the splash screen for a faster, cleaner entry.
 (setq inhibit-startup-screen t)
 

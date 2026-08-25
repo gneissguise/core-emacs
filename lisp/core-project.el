@@ -9,11 +9,9 @@
 (require 'project)
 (require 'window)
 
-;; --- Smarter Window Management ---
-;; We are removing the (setq display-buffer-alist ...) configuration
-;; to avoid calling the missing 'display-buffer-other-window' function.
-;; Org-mode will now use its default behavior to show capture buffers.
-
+;; Auto-revert buffers visiting VCS-tracked files after VC operations
+;; (e.g. a magit pull or checkout), without polling every buffer on disk.
+(vc-auto-revert-mode 1)
 
 ;; --- Custom Project Commands ---
 (defun crafted-consult-project-find ()
@@ -27,7 +25,7 @@
 (defun crafted-project-switch-and-open-file ()
   "Switch to a project and immediately find a file in it."
   (interactive)
-  (let ((project (project-read-project-name (project-known-project-roots))))
+  (let ((project (project-prompt-project-name)))
     (project-switch-project project)
     (crafted-consult-project-find)))
 

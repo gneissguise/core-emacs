@@ -19,7 +19,5 @@
   (interactive)
   (my-show-cheatsheet "clojure"))
 
-;; The global keybinding has been removed from this file.
-
 (provide 'core-cheatsheet)
 ;;; core-cheatsheet.el ends here

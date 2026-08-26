@@ -49,11 +49,6 @@ local/
 .local/
 .state/
 
-# Emacs 31+ "User Lisp directory" feature: vendored/cloned third-party
-# packages (e.g. combobulate) live here and are managed as their own
-# git checkouts, not tracked inside this repo.
-user-lisp/
-
 # local packages or builds
 build/
 node_modules/

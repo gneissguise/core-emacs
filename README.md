@@ -12,7 +12,8 @@ This repository aims to be lean and easily auditable — it prefers tiny, well-d
 - Fast startup optimizations placed in `early-init.el`
 - Minimal opinionated defaults (user info, editing prefs, recentf, backups)
 - Emacs 31.1 native features: `vc-auto-revert-mode` for lightweight version control tracking, `mode-line-collapse-minor-modes` for cleaner mode-line display
-- User Lisp Directory (`user-lisp/`) for vendored third-party packages — no manual load-path manipulation needed
+- Third-party packages in `site-lisp/` and `elpa/` — no manual load-path manipulation needed
+- Structural editing with [combobulate](https://github.com/mickeynp/combobulate) (Tree-sitter powered, installed to `site-lisp/`)
 - Deferred configuration loading via `emacs-startup-hook` for snappy startup
 
 ---
@@ -41,9 +42,16 @@ git clone git@github.com:gneissguise/core-emacs.git ~/.config/emacs
 git clone git@github.com:gneissguise/core-emacs.git ~/.emacs.d
 ```
 
-After cloning, start Emacs. The config uses `early-init.el` for early startup optimizations and `init.el` as the main entrypoint.
+Install [combobulate](https://github.com/mickeynp/combobulate) (Tree-sitter structural editing):
 
-Note: Package management and third-party packages are installed into `elpa/` by default (this directory is ignored by `.gitignore`). If you want to vendor packages, add them under `user-lisp/` — Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads. No manual configuration needed.
+```bash
+cd ~/.config/emacs
+git clone --depth 1 https://github.com/mickeynp/combobulate.git site-lisp/combobulate
+```
+
+Then start Emacs. The config uses `early-init.el` for early startup optimizations and `init.el` as the main entrypoint.
+
+Note: Package management and third-party packages are installed into `elpa/` by default (this directory is ignored by `.gitignore`). If you want to vendor packages, add them under `site-lisp/` and add the path to `load-path` in your configuration.
 
 ---
 
@@ -55,7 +63,8 @@ Top-level files you care about:
 - `init.el` — Main entrypoint, loads essential modules and defers the rest
 - `custom.el` — (ignored) Emacs' customization file; excluded from VCS
 - `lisp/` — Modular configuration files (core-*.el)
-- `user-lisp/` — Vendored third-party packages (Emacs 31+ User Lisp Directory)
+- `user-lisp/` — Emacs 31+ User Lisp Directory (reserved for personal snippets and local packages)
+- `site-lisp/` — Manually cloned third-party packages (e.g. combobulate for Tree-sitter structural editing)
 
 The `lisp/` directory contains small, focused modules such as:
 
@@ -70,6 +79,7 @@ The `lisp/` directory contains small, focused modules such as:
 
 - Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored — use it or create `custom.local.el` and add it to your `~/.config/emacs/custom.el` if you want local-only overrides.
 - To add personal snippets or local packages, place them under `user-lisp/`. Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads — no manual configuration needed.
+- For manually cloned third-party packages that aren't available on MELPA (e.g. combobulate), place them under `site-lisp/` and add the load-path in `lisp/core-programming.el`.
 - To change user metadata, edit `user-full-name` and `user-mail-address` in `init.el` or set them in your `custom.el`.
 
 ---
@@ -80,7 +90,7 @@ This config uses the bundled package manager (ELPA/MELPA) and installs packages 
 
 - Recording pinned package versions in a small bootstrap file
 - Using `straight.el` or `package-jnk` vendoring for deterministic installs
-- Vendoring packages into `user-lisp/` and tracking them in Git (Emacs 31+ auto-discovers this directory)
+- Cloning third-party packages into `site-lisp/` and tracking them in Git (add the path to `load-path` in your configuration)
 
 Note: Several packages that were previously installed via ELPA are now built-in to Emacs 31, including `modus-themes`. These built-in packages are managed by Emacs' built-in package system and do not appear in the `elpa/` directory.
 

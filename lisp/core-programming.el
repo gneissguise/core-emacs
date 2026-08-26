@@ -16,6 +16,7 @@
 
 
 ;; --- Combobulate: Tree-sitter Powered Editing ---
+(add-to-list 'load-path (expand-file-name "site-lisp/combobulate"))
 (require 'combobulate)
 (let ((combobulate-enabled-modes
        '(emacs-lisp-mode lisp-mode clojure-mode sh-mode js-mode typescript-mode html-mode

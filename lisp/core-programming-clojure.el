@@ -5,9 +5,10 @@
 
 ;;; Code:
 
-;; --- Clojure Tree-sitter Mode ---
+;; --- Clojure Tree-sitter Mode (Emacs 31.1+ auto-install) ---
+(setq treesit-enabled-modes '(clojure-ts-mode typescript-ts-mode js-ts-mode sh-ts-mode))
+(setq treesit-auto-install-grammar t)
 (require 'clojure-ts-mode)
-(add-to-list 'major-mode-remap-alist '(clojure-mode . clojure-ts-mode))
 
 
 ;; --- Auto-formatting on Save ---

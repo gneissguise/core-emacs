@@ -38,7 +38,8 @@
 (which-key-mode)
 
 ;; --- Rainbow Delimiters: Colorized Brackets ---
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(with-eval-after-load 'rainbow-delimiters
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 
 ;; --- Git Gutter: Version Control Info ---

@@ -31,16 +31,14 @@
   '(;; Core Theme:
     modus-themes
 
-    ;; Minad's Modern Emacs Suite
+    ;; Minad's Modern Emacs Suite (built-in to Emacs 31.1)
     affe
     cape
     consult
     consult-flycheck
     corfu
     goggles
-    jinx
     marginalia
-    org-modern
     recursion-indicator
     tempel
     vertico
@@ -48,8 +46,6 @@
     ;; UI and Navigation Enhancements
     ace-window
     git-gutter
-    rainbow-delimiters
-    which-key
 
     ;; Syncs the shell environment with Emacs
     exec-path-from-shell

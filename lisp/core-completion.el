@@ -44,6 +44,10 @@
 ;; We defer the keybindings until after the 'consult' package is loaded.
 ;; This prevents errors on startup if the commands are not yet defined.
 (with-eval-after-load 'consult
+  ;; Disable the regex filter prompt in consult-project-find so files open
+  ;; immediately after selection, without requiring an extra Enter press.
+  (setq consult-project-find-regex-prompt nil)
+
   ;; Bind powerful alternatives to their standard keys.
   (global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
   (global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'

@@ -20,7 +20,7 @@
   (let ((project-root (project-root (project-current))))
     (when project-root
       (let ((default-directory project-root))
-        (consult-find)))))
+        (project-find-file)))))
 
 (defun crafted-project-switch-and-open-file ()
   "Switch to a project and immediately find a file in it."

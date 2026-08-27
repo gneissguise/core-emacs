@@ -14,7 +14,7 @@
 (vc-auto-revert-mode 1)
 
 ;; --- Custom Project Commands ---
-(defun crafted-consult-project-find ()
+(defun core-consult-project-find ()
   "Find a file in the current project."
   (interactive)
   (let ((project-root (project-root (project-current))))
@@ -22,14 +22,14 @@
       (let ((default-directory project-root))
         (project-find-file)))))
 
-(defun crafted-project-switch-and-open-file ()
+(defun core-project-switch-and-open-file ()
   "Switch to a project and immediately find a file in it."
   (interactive)
   (let ((project (project-prompt-project-name)))
     (project-switch-project project)
-    (crafted-consult-project-find)))
+    (core-consult-project-find)))
 
-(defun crafted-project-open-readme ()
+(defun core-project-open-readme ()
   "Find and open the README file for the current project."
   (interactive)
   (let* ((project-root (project-root (project-current)))
@@ -40,9 +40,9 @@
 
 
 ;; --- Keybindings ---
-(global-set-key (kbd "C-c p p") #'crafted-project-switch-and-open-file)
-(global-set-key (kbd "C-c p f") #'crafted-consult-project-find)
-(global-set-key (kbd "C-c p r") #'crafted-project-open-readme)
+(global-set-key (kbd "C-c p p") #'core-project-switch-and-open-file)
+(global-set-key (kbd "C-c p f") #'core-consult-project-find)
+(global-set-key (kbd "C-c p r") #'core-project-open-readme)
 
 
 (provide 'core-project)

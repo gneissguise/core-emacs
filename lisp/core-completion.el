@@ -5,19 +5,12 @@
 ;;; for a fast and effective completion and search experience.
 
 ;;; Code:
-(require 'prescient)
-
-;; --- Prescient: Smart Sorting and Filtering ---
-;; Tell Emacs to use Prescient's advanced filtering and sorting.
-(setq completion-styles '(prescient))
-;; Save the usage history to a file so it persists across Emacs sessions.
-(prescient-persist-mode 1)
+;; --- Completion: Smart Sorting and Filtering ---
+;; Emacs 31.1 has prescient sorting built-in by default. No configuration needed.
 
 ;; --- Vertico: The Core Vertical Completion UI ---
 ;; Replaces the default minibuffer UI with a cleaner, faster vertical display.
 (vertico-mode 1)
-;; Use the prescient sorter for Vertico.
-(setq vertico-prescient-enable t)
 
 ;; --- Corfu: In-Buffer Completion ---
 ;; Provides a pop-up completion UI for text being written in the buffer.
@@ -34,42 +27,52 @@
 ;; candidate is (e.g., "Command", "File", "Variable").
 (marginalia-mode 1)
 
-(with-eval-after-load 'corfu
-  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+;; Add nerd-icons formatter for corfu margins (corfu is built-in, use direct binding)
+(add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+
+;; Corfu navigation keybindings (direct binding since corfu is built-in)
+(global-set-key (kbd "C-c C-o") #'corfu-next)
+(global-set-key (kbd "C-c C-i") #'corfu-previous)
 
 
 ;; --- Consult: Enhanced Search and Navigate Commands ---
 ;; Provides powerful alternatives to common commands like find-file and switch-to-buffer.
 ;; We can bind some of these to their standard keys.
-;; We defer the keybindings until after the 'consult' package is loaded.
-;; This prevents errors on startup if the commands are not yet defined.
-(with-eval-after-load 'consult
-  ;; Disable the regex filter prompt in consult-project-find so files open
-  ;; immediately after selection, without requiring an extra Enter press.
-  (setq consult-project-find-regex-prompt nil)
+;; Ensure consult loads so keybindings are established
+(require 'consult)
 
-  ;; Bind powerful alternatives to their standard keys.
-  (global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
-  (global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'
-  (global-set-key (kbd "C-x C-f") #'consult-find)      ;; Replaces 'find-file'
-  (global-set-key (kbd "C-s") #'consult-line)         ;; Replaces 'isearch-forward'
+;; Bind powerful alternatives to their standard keys (direct binding since consult is built-in)
+(global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
+(global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'
+(global-set-key (kbd "C-x C-f") #'consult-find)      ;; Replaces 'find-file'
+(global-set-key (kbd "C-s") #'consult-line)         ;; Replaces 'isearch-forward'
 
-  ;; Add a dedicated command for switching projects with Consult.
-  (defun my/consult-project-switch ()
-    "Switch to another project using Consult."
-    (interactive)
-    (consult-project-buffer))
-  (global-set-key (kbd "C-x p s") #'my/consult-project-switch))
+;; Add a dedicated command for switching projects with Consult.
+(defun my/consult-project-switch ()
+  "Switch to another project using Consult."
+  (interactive)
+  (consult-project-buffer))
+(global-set-key (kbd "C-x p s") #'my/consult-project-switch)
+
+;; Bind consult-grep to C-c f for project-wide file content search
+(global-set-key (kbd "C-c f") #'consult-grep)
 
 ;; --- Cape and Tempel: Completion Sources and Snippets ---
 ;; Cape provides additional "completion at point" sources.
 ;; Tempel provides simple, template-based snippet expansion.
 (require 'tempel) ;; Ensure tempel functions are loaded
 
+;; Bind Tempel snippet insertion to C-c t (direct binding since tempel is built-in)
+(global-set-key (kbd "C-c t") #'tempel-insert)
+
 ;; Add more completion sources for Corfu to use.
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
 (add-to-list 'completion-at-point-functions #'tempel-expand)
+
+;; Bind consult-flycheck to C-c ! for viewing Flycheck diagnostics
+(require 'consult-flycheck) ;; Ensure consult-flycheck is loaded
+(global-set-key (kbd "C-c !") #'consult-flycheck)
 
 (provide 'core-completion)
 ;;; core-completion.el ends here

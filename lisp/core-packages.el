@@ -31,17 +31,6 @@
   '(;; Core Theme:
     modus-themes
 
-    ;; Minad's Modern Emacs Suite (built-in to Emacs 31.1)
-    affe
-    cape
-    consult
-    consult-flycheck
-    corfu
-    goggles
-    marginalia
-    recursion-indicator
-    tempel
-    vertico
 
     ;; UI and Navigation Enhancements
     ace-window
@@ -69,9 +58,6 @@
     magit
     magit-todos
     magit-delta
-
-    ;; Smart completion sorting
-    prescient
 
     ;; System cleanliness
     no-littering

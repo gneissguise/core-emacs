@@ -5,6 +5,14 @@
 
 ;;; Code:
 
+;; --- Forward Declarations (suppress native compiler warnings) ---
+(declare-function move-text-up "move-text")
+(declare-function move-text-down "move-text")
+(declare-function mc/edit-lines "multiple-cursors")
+(declare-function mc/mark-next-like-this "multiple-cursors")
+(declare-function mc/mark-previous-like-this "multiple-cursors")
+(declare-function mc/mark-all-like-this "multiple-cursors")
+
 ;; --- Visual Enhancements ---
 ;; Highlight the current line to improve focus, except in terminal-emulation
 ;; buffers where the extra highlight is more distracting than useful.

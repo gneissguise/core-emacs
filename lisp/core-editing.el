@@ -55,10 +55,10 @@
 (show-paren-mode 1)
 (setopt show-paren-not-in-comments-or-strings 'all)
 (delete-selection-mode 1)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq-default fill-column 86)
-(setq-default show-trailing-whitespace t)
+(setopt indent-tabs-mode nil)
+(setopt tab-width 2)
+(setopt fill-column 86)
+(setopt show-trailing-whitespace t)
 
 (provide 'core-editing)
 ;;; core-editing.el ends here

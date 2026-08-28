@@ -13,7 +13,7 @@
 
 ;; --- Goggles: Visualize Changes ---
 (goggles-mode 1)
-(setq goggles-pulse t)
+(setopt goggles-pulse t)
 
 
 ;; --- Jinx: On-the-fly Spell Checking ---

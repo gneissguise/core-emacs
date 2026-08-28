@@ -16,10 +16,10 @@
 ;; Provides a pop-up completion UI for text being written in the buffer.
 (global-corfu-mode 1)
 ;; Use prescient for sorting Corfu completion candidates.
-(setq corfu-sorter 'prescient)
+(setopt corfu-sorter 'prescient)
 ;; A little bit of configuration for a smoother experience.
-(setq corfu-auto t                 ;; Enable auto-completion
-      corfu-auto-delay 0.2)        ;; Show completion popup after 0.2s of inactivity
+(setopt corfu-auto t                 ;; Enable auto-completion
+        corfu-auto-delay 0.2)        ;; Show completion popup after 0.2s of inactivity
 
 
 ;; --- Marginalia: Rich Annotations ---

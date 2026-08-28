@@ -10,10 +10,10 @@
 
 ;; --- 1. Core File & Directory Setup ---
 ;; Define the home for all Org-related files.
-(setq org-directory (expand-file-name "~/org"))
+(setopt org-directory (expand-file-name "~/org"))
 
 ;; Set the files to be used by the Org Agenda.
-(setq org-agenda-files (list (expand-file-name "inbox.org" org-directory)
+(setopt org-agenda-files (list (expand-file-name "inbox.org" org-directory)
                              (expand-file-name "tasks.org" org-directory)))
 
 ;; --- 2. GTD (Getting Things Done) Setup ---
@@ -22,18 +22,18 @@
 ;; (t) = TODO, (n) = NEXT, (w) = WAITING
 ;; | (pipe) separates active states from done states.
 ;; (d) = DONE, (c) = CANCELLED
-(setq org-todo-keywords
+(setopt org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ;; Give our custom keywords some nice colors.
-(setq org-todo-keyword-faces
+(setopt org-todo-keyword-faces
       '(("NEXT" . (:foreground "sky blue" :weight bold))
         ("WAITING" . (:foreground "orange" :weight bold))
         ("DONE" . (:foreground "green"))
         ("CANCELLED" . (:foreground "red"))))
 
 ;; Automatically add a timestamp when a task is marked as DONE.
-(setq org-log-done 'time)
+(setopt org-log-done 'time)
 
 ;; Configure Org Capture for fast, global note and task entry.
 ;; This is the "Inbox" for your GTD system.

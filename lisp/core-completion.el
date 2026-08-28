@@ -43,7 +43,7 @@
 
 ;; Bind powerful alternatives to their standard keys (direct binding since consult is built-in)
 (global-set-key (kbd "C-x b") #'consult-buffer)      ;; Replaces 'switch-to-buffer'
-(global-set-key (kbd "M-x") #'consult-M-x)          ;; Replaces 'execute-extended-command'
+(global-set-key (kbd "M-x") #'execute-extended-command)  ;; Standard Emacs command (consult has no equivalent)
 (global-set-key (kbd "C-x C-f") #'consult-find)      ;; Replaces 'find-file'
 (global-set-key (kbd "C-s") #'consult-line)         ;; Replaces 'isearch-forward'
 

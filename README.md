@@ -12,7 +12,7 @@ This repository aims to be lean and easily auditable — it prefers tiny, well-d
 - Fast startup optimizations placed in `early-init.el`
 - Minimal opinionated defaults (user info, editing prefs, recentf, backups)
 - Emacs 31.1 native features: `vc-auto-revert-mode` for lightweight version control tracking, `mode-line-collapse-minor-modes` for cleaner mode-line display
-- Third-party packages in `site-lisp/` and `elpa/` — no manual load-path manipulation needed
+- Third-party packages in `site-lisp/combobulate/` (git submodule; only this subdirectory is added to load-path) and `elpa/` (auto-managed by package manager)
 - Structural editing with [combobulate](https://github.com/mickeynp/combobulate) (Tree-sitter powered, installed to `site-lisp/`)
 - Deferred configuration loading via `emacs-startup-hook` for snappy startup
 
@@ -63,7 +63,7 @@ Top-level files you care about:
 - `init.el` — Main entrypoint, loads essential modules and defers the rest
 - `custom.el` — (ignored) Emacs' customization file; excluded from VCS
 - `lisp/` — Modular configuration files (core-*.el)
-- `user-lisp/` — Emacs 31+ User Lisp Directory (reserved for personal snippets and local packages)
+- `user-lisp/` — (optional) Emacs 31+ User Lisp Directory for personal snippets; not used by this config
 - `site-lisp/` — Manually cloned third-party packages (e.g. combobulate for Tree-sitter structural editing)
 
 The `lisp/` directory contains small, focused modules such as:
@@ -77,9 +77,9 @@ The `lisp/` directory contains small, focused modules such as:
 
 ## Customization
 
-- Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored — use it or create `custom.local.el` and add it to your `~/.config/emacs/custom.el` if you want local-only overrides.
+- Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored — use it for local-only overrides, or create a separate `custom.local.el` and load it from your `custom.el` with `(load "custom.local" t t)`.
 - To add personal snippets or local packages, place them under `user-lisp/`. Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads — no manual configuration needed.
-- For manually cloned third-party packages that aren't available on MELPA (e.g. combobulate), place them under `site-lisp/` and add the load-path in `lisp/core-programming.el`.
+- For manually cloned third-party packages that aren't available on MELPA (e.g. combobulate), place them under `site-lisp/`. Only specific subdirectories (such as `site-lisp/combobulate`) are added to `load-path` in the configuration — not the entire `site-lisp/` directory.
 - To change user metadata, edit `user-full-name` and `user-mail-address` in `init.el` or set them in your `custom.el`.
 
 ---
@@ -90,9 +90,9 @@ This config uses the bundled package manager (ELPA/MELPA) and installs packages 
 
 - Recording pinned package versions in a small bootstrap file
 - Using `straight.el` or `package-jnk` vendoring for deterministic installs
-- Cloning third-party packages into `site-lisp/` and tracking them in Git (add the path to `load-path` in your configuration)
+- Cloning third-party packages into `site-lisp/` and tracking them in Git (requires manual load-path setup in configuration)
 
-Note: Several packages that were previously installed via ELPA are now built-in to Emacs 31, including `modus-themes`. These built-in packages are managed by Emacs' built-in package system and do not appear in the `elpa/` directory.
+Note: Some packages that were once third-party (e.g. `eglot`, `aggressive-indent`) are now built-in to modern Emacs, reducing external dependencies.
 
 ---
 

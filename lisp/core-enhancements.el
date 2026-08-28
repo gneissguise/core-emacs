@@ -34,7 +34,7 @@
   (global-set-key (kbd "C-'") #'avy-goto-char-timer))
 
 
-;; --- Which Key: Discover Keybindings ---
+;; --- Which Key: Discover Keybindings (Emacs 31+ built-in) ---
 (which-key-mode)
 
 ;; --- Rainbow Delimiters: Colorized Brackets ---

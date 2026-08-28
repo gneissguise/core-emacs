@@ -16,7 +16,6 @@
 
 
 ;; --- Combobulate: Tree-sitter Powered Editing ---
-(add-to-list 'load-path (expand-file-name "site-lisp/combobulate" user-emacs-directory))
 (require 'combobulate)
 (let ((combobulate-enabled-modes
        '(emacs-lisp-mode lisp-mode clojure-mode sh-mode js-mode typescript-mode html-mode
@@ -26,8 +25,8 @@
 
 ;; --- Aggressive Indent ---
 ;; Automatically keep code indented correctly as you type.
-(with-eval-after-load 'aggressive-indent
-  (add-hook 'prog-mode-hook #'aggressive-indent-mode))
+;; Emacs 31.1+ has aggressive-indent built-in, so we can enable it directly.
+(add-hook 'prog-mode-hook #'aggressive-indent-mode)
 
 ;; --- Improved Compile Command ---
 ;; Make the compilation buffer quieter and add syntax highlighting.

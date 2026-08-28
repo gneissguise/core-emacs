@@ -152,11 +152,16 @@
 
 ;; --- Hook Setups ---
 
-;; This function is run only AFTER Eglot has successfully started.
-(defun my-clojure-eglot-hook ()
-  "Set up integrations that depend on Eglot being active."
-  ;; Now that Eglot is running, we can safely add its eldoc function.
-  (add-hook 'eldoc-documentation-functions #'eglot-eldoc-documentation-function nil 'local))
+;; Emacs 31.1+ has eglot built-in, so we can use it directly without
+;; waiting for a package load. This function sets up integrations that
+;; depend on Eglot being active.
+(defun my-clojure-eglot-setup ()
+  "Set up eldoc integration when Eglot is active in Clojure buffers."
+  (add-hook 'eldoc-documentation-functions
+            (lambda (&rest args)
+              (when (fboundp #'eglot-eldoc-documentation-function)
+                (apply #'eglot-eldoc-documentation-function args)))
+            nil 'local))
 
 (setq project-vc-extra-root-markers '(".gitignore" "deps.edn"))
 (setq eldoc-echo-area-use-multiline-p nil)
@@ -167,6 +172,7 @@
           (lambda ()
             (add-hook 'before-save-hook #'my-clojure-format-buffer-on-save nil 'local)
             (eldoc-mode 1)
+            (my-clojure-eglot-setup)
             (eglot-ensure)
             (my-clojure-mode-keys)))
 

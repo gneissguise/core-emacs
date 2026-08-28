@@ -31,12 +31,21 @@
   '(;; Core Theme:
     modus-themes
 
-
-    ;; UI and Navigation Enhancements
+    ;; UI and Navigation Enhancements (which-key is third-party; avy is lightweight alternative)
     ace-window
+    avy
     git-gutter
+    recursion-indicator
 
-    ;; Syncs the shell environment with Emacs
+    ;; Completion System (Vertico/Consult/Marginalia/Tempel/Cape)
+    cape
+    consult
+    consult-flycheck
+    marginalia
+    tempel
+    vertico
+
+    ;; Syncs the shell environment with Emacs (may still be useful for non-standard shells)
     exec-path-from-shell
 
     ;; Modeline enhancements
@@ -45,25 +54,17 @@
     nerd-icons-corfu
     simple-modeline
 
-    ;; Helpful lib
-    helpful
-
-    ;; Programming libs
-    eglot
-    aggressive-indent
-    clojure-ts-mode
+    ;; Programming libs (eglot is built-in since Emacs 26.1; inf-clojure for REPL)
     inf-clojure
 
     ;; Version Control
+    goggles
     magit
     magit-todos
     magit-delta
 
-    ;; System cleanliness
-    no-littering
-
-    ;; Optional Enhancements
-    avy
+    ;; Org mode enhancements
+    org-modern
 
     ;; VS Code-like editing features
     move-text

@@ -38,10 +38,11 @@
 
 ;; --- Load Path Setup ---
 ;; Third-party packages without an ELPA/MELPA release (e.g. combobulate) live
-;; in user-lisp/, which Emacs 31+ auto-discovers, byte-compiles, scrapes for
-;; autoloads, and adds to `load-path' on its own (see "(emacs) User Lisp
-;; Directory"). No manual `add-to-list' is needed for it.
+;; in site-lisp/, which we add explicitly. Emacs 31+ auto-discovers user-lisp/
+;; but NOT site-lisp/.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+;; combobulate.el lives inside site-lisp/combobulate/ (git submodule), not flat under site-lisp/
+(add-to-list 'load-path (expand-file-name "site-lisp/combobulate" user-emacs-directory))
 
 
 ;; --- Load ESSENTIAL Configurations ---

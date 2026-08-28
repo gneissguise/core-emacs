@@ -1,8 +1,8 @@
-# core-emacs — Minimal, modular Emacs configuration
+# core-emacs - Minimal, modular Emacs configuration
 
 A small, fast, and modular Emacs configuration focused on keeping Emacs "core-like" while providing sensible enhancements. Intended to be installed in your XDG config directory (e.g. `~/.config/emacs`) and used with Emacs 31.1 or newer.
 
-This repository aims to be lean and easily auditable — it prefers tiny, well-documented modules under `lisp/` and keeps heavier or machine-specific artifacts out of version control.
+This repository aims to be lean and easily auditable - it prefers tiny, well-documented modules under `lisp/` and keeps heavier or machine-specific artifacts out of version control.
 
 ---
 
@@ -59,27 +59,27 @@ Note: Package management and third-party packages are installed into `elpa/` by 
 
 Top-level files you care about:
 
-- `early-init.el` — Very early startup settings (GC tuning, UI disabling)
-- `init.el` — Main entrypoint, loads essential modules and defers the rest
-- `custom.el` — (ignored) Emacs' customization file; excluded from VCS
-- `lisp/` — Modular configuration files (core-*.el)
-- `user-lisp/` — (optional) Emacs 31+ User Lisp Directory for personal snippets; not used by this config
-- `site-lisp/` — Manually cloned third-party packages (e.g. combobulate for Tree-sitter structural editing)
+- `early-init.el` - Very early startup settings (GC tuning, UI disabling)
+- `init.el` - Main entrypoint, loads essential modules and defers the rest
+- `custom.el` - (ignored) Emacs' customization file; excluded from VCS
+- `lisp/` - Modular configuration files (core-*.el)
+- `user-lisp/` - (optional) Emacs 31+ User Lisp Directory for personal snippets; not used by this config
+- `site-lisp/` - Manually cloned third-party packages (e.g. combobulate for Tree-sitter structural editing)
 
 The `lisp/` directory contains small, focused modules such as:
 
-- `core-packages.el` — package setup and package list
-- `core-environment.el` — environment-related tweaks
-- `core-ui.el` — UI tweaks
+- `core-packages.el` - package setup and package list
+- `core-environment.el` - environment-related tweaks
+- `core-ui.el` - UI tweaks
 - `core-completion.el`, `core-editing.el`, `core-programming.el`, etc.
 
 ---
 
 ## Customization
 
-- Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored — use it for local-only overrides, or create a separate `custom.local.el` and load it from your `custom.el` with `(load "custom.local" t t)`.
-- To add personal snippets or local packages, place them under `user-lisp/`. Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads — no manual configuration needed.
-- For manually cloned third-party packages that aren't available on MELPA (e.g. combobulate), place them under `site-lisp/`. Only specific subdirectories (such as `site-lisp/combobulate`) are added to `load-path` in the configuration — not the entire `site-lisp/` directory.
+- Keep machine/user-specific secrets or settings out of the repo. `custom.el` is ignored - use it for local-only overrides, or create a separate `custom.local.el` and load it from your `custom.el` with `(load "custom.local" t t)`.
+- To add personal snippets or local packages, place them under `user-lisp/`. Emacs 31+ auto-discovers this directory, adds it to the load path, byte-compiles it, and scrapes autoloads - no manual configuration needed.
+- For manually cloned third-party packages that aren't available on MELPA (e.g. combobulate), place them under `site-lisp/`. Only specific subdirectories (such as `site-lisp/combobulate`) are added to `load-path` in the configuration - not the entire `site-lisp/` directory.
 - To change user metadata, edit `user-full-name` and `user-mail-address` in `init.el` or set them in your `custom.el`.
 
 ---

@@ -10,6 +10,14 @@
 (setq treesit-auto-install-grammar t)
 (require 'clojure-ts-mode)
 
+;; Explicitly register Clojure file extensions with tree-sitter mode
+;; to ensure correct major mode activation when opening files via
+;; project navigation (C-c p p) or any other file-opening workflow.
+(add-to-list 'auto-mode-alist '("\\.clj\\'" . clojure-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.cljc\\'" . clojure-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-ts-mode))
+
 
 ;; --- Auto-formatting on Save ---
 (defun my-clojure-format-buffer-on-save ()

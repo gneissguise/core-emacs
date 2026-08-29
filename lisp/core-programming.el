@@ -24,9 +24,14 @@
     (add-hook (intern (format "%s-hook" mode-hook)) #'combobulate-mode)))
 
 ;; --- Aggressive Indent ---
-;; Automatically keep code indented correctly as you type.
-;; Emacs 31.1+ has aggressive-indent built-in, so we can enable it directly.
-(add-hook 'prog-mode-hook #'aggressive-indent-mode)
+;; Automatically keep code indented correctly as you type in traditional Emacs modes.
+;; Tree-sitter-based programming modes (Clojure, TypeScript/JS, Shell) have their own
+;; native indentation engines and should NOT use aggressive-indent — it conflicts with them.
+(add-hook 'prog-mode-hook
+          (lambda ()
+            ;; Only enable for non-tree-sitter modes that lack native indentation.
+            (unless (derived-mode-p 'treesit-mode)
+              (aggressive-indent-mode 1))))
 
 ;; --- Improved Compile Command ---
 ;; Make the compilation buffer quieter and add syntax highlighting.
